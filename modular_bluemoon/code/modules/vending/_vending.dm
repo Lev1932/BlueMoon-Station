@@ -945,7 +945,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 
 /obj/machinery/vending/ui_assets(mob/user)
 	return list(
-		get_asset_datum(/datum/asset/spritesheet/vending),
+		get_asset_datum(/datum/asset/spritesheet_batched/vending),
 	)
 
 /obj/machinery/vending/ui_interact(mob/user, datum/tgui/ui)
@@ -1374,8 +1374,13 @@ GLOBAL_LIST_EMPTY(vending_products)
 	to_chat(user, span_warning("[src] сопротивляется вашей ментальной хватке!"))
 
 ///Crush the mob that the vending machine got thrown at
+// /obj/machinery/vending/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
+// 	if(isliving(hit_atom) && !tilted) //  BLUEMOON EDIT вендор не падает когда он уже упал.
+// 		tilt(fatty=hit_atom)
+// 	return ..()
+
 /obj/machinery/vending/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
-	if(isliving(hit_atom) && !tilted) //  BLUEMOON EDIT вендор не падает когда он уже упал.
+	if(isliving(hit_atom))
 		tilt(fatty=hit_atom)
 	return ..()
 

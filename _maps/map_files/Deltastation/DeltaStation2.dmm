@@ -36336,8 +36336,7 @@
 /turf/open/floor/plasteel,
 /area/hallway/secondary/exit/departure_lounge)
 "ehQ" = (
-/obj/machinery/pool/drain,
-/turf/open/pool,
+/turf/open/pool/water,
 /area/commons/fitness/pool)
 "eii" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4{
@@ -43026,7 +43025,7 @@
 	dir = 2;
 	pixel_y = 24
 	},
-/turf/open/pool,
+/turf/open/pool/water,
 /area/commons/fitness/pool)
 "fFH" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer4{
@@ -61510,7 +61509,7 @@
 /area/medical/virology)
 "jEC" = (
 /obj/structure/pool/Lboard,
-/turf/open/pool,
+/turf/open/pool/water,
 /area/commons/fitness/pool)
 "jEG" = (
 /obj/effect/turf_decal/tile/red/full,
@@ -76240,15 +76239,18 @@
 /obj/structure/window/reinforced,
 /obj/structure/rack,
 /obj/effect/turf_decal/bot/yellow,
-/obj/item/clothing/suit/armor/hos/platecarrier{
-	pixel_x = -3;
-	pixel_y = 3
+/obj/item/gun/ballistic/rocketlauncher/security{
+	pixel_x = -6;
+	pixel_y = -6
 	},
-/obj/item/clothing/suit/armor/hos/platecarrier,
-/obj/item/clothing/suit/armor/hos/platecarrier{
-	pixel_x = 3;
-	pixel_y = -3
+/obj/item/gun/ballistic/rocketlauncher/security,
+/obj/item/gun/ballistic/rocketlauncher/security{
+	pixel_x = 6;
+	pixel_y = 6
 	},
+/obj/item/storage/box/security_missiles,
+/obj/item/storage/box/security_missiles,
+/obj/item/storage/box/security_missiles,
 /turf/open/floor/plasteel/dark,
 /area/ai_monitored/security/armory)
 "mIr" = (
@@ -94248,9 +94250,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer4,
 /turf/open/floor/plating,
 /area/maintenance/port)
-"quz" = (
-/turf/open/pool,
-/area/commons/fitness/pool)
 "quN" = (
 /obj/structure/sign/poster/contraband/random,
 /turf/closed/wall,
@@ -101048,7 +101047,7 @@
 	dir = 1;
 	pixel_y = -24
 	},
-/turf/open/pool,
+/turf/open/pool/water,
 /area/commons/fitness/pool)
 "rUo" = (
 /obj/machinery/camera{
@@ -109814,12 +109813,6 @@
 	},
 /turf/open/floor/wood,
 /area/service/lawoffice)
-"tKJ" = (
-/obj/machinery/pool/filter{
-	pixel_y = 16
-	},
-/turf/open/pool,
-/area/commons/fitness/pool)
 "tKL" = (
 /turf/closed/wall/r_wall,
 /area/command/meeting_room/council)
@@ -122801,17 +122794,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/hallway/primary/fore)
-"wuR" = (
-/obj/machinery/pool/controller,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/siding/yellow,
-/turf/open/floor/plasteel,
-/area/commons/fitness/pool)
 "wuS" = (
 /obj/machinery/meter,
 /obj/machinery/atmospherics/pipe/simple/yellow/visible{
@@ -184539,11 +184521,11 @@ qNM
 ygm
 fVR
 otO
-quz
-quz
-quz
-quz
-quz
+ehQ
+ehQ
+ehQ
+ehQ
+ehQ
 rcO
 rsR
 ygm
@@ -184796,11 +184778,11 @@ jde
 rWX
 rBQ
 otO
-quz
-quz
-quz
-quz
-quz
+ehQ
+ehQ
+ehQ
+ehQ
+ehQ
 rcO
 vuF
 ygm
@@ -185053,11 +185035,11 @@ nSg
 rJi
 fRP
 otO
-quz
-quz
-quz
-quz
-quz
+ehQ
+ehQ
+ehQ
+ehQ
+ehQ
 rcO
 bxg
 ygm
@@ -185311,9 +185293,9 @@ tkx
 fRP
 otO
 fFs
-quz
-quz
-quz
+ehQ
+ehQ
+ehQ
 rUj
 rcO
 rsR
@@ -185567,11 +185549,11 @@ xDm
 tkx
 pnG
 otO
-quz
-quz
 ehQ
-quz
-quz
+ehQ
+ehQ
+ehQ
+ehQ
 rcO
 toX
 ygm
@@ -185824,11 +185806,11 @@ jAv
 tkx
 jHT
 otO
-quz
-quz
-quz
-quz
-quz
+ehQ
+ehQ
+ehQ
+ehQ
+ehQ
 rcO
 ewE
 vHq
@@ -186081,11 +186063,11 @@ jAv
 tkx
 fRP
 otO
-quz
-quz
-quz
-quz
-quz
+ehQ
+ehQ
+ehQ
+ehQ
+ehQ
 rcO
 laJ
 vHq
@@ -186337,12 +186319,12 @@ vTr
 jAv
 tkx
 fRP
-wuR
-quz
-quz
-quz
-quz
-quz
+otO
+ehQ
+ehQ
+ehQ
+ehQ
+ehQ
 rcO
 pIf
 vHq
@@ -186595,11 +186577,11 @@ jAv
 tkx
 uQz
 otO
-tKJ
-quz
+ehQ
+ehQ
 jEC
-quz
-quz
+ehQ
+ehQ
 rcO
 sKP
 vHq

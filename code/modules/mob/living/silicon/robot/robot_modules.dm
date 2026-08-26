@@ -189,6 +189,9 @@
 				EG.update_icon()
 			else
 				EG.charge_tick = 0
+		else if(istype(I, /obj/item/gun/ballistic/revolver/grenadelauncher/cyborg))
+			var/obj/item/gun/ballistic/revolver/grenadelauncher/cyborg/GL = I
+			GL.recharge_from_station(coeff)
 
 	R.toner = R.tonermax
 
@@ -971,7 +974,7 @@
 			dogborg = TRUE
 		if("Kittyborg")
 			cyborg_base_icon = "engi"
-			cyborg_icon_override = 'modular_bluemoon/icons/mob/kittycatborgs/kittyborg/kittyborg_engi.dmi'
+			cyborg_icon_override = 'modular_bluemoon/icons/mob/kittycatborgs/kittyborg/Kittyborg_engi.dmi'
 			moduleselect_alternate_icon = 'modular_citadel/icons/ui/screen_cyborg.dmi'
 			dogborg = TRUE
 		if("Dullahan (Taur)")
@@ -1276,7 +1279,7 @@
 			dogborg = TRUE
 		if("Kittyborg")
 			cyborg_base_icon = "sec"
-			cyborg_icon_override = 'modular_bluemoon/icons/mob/kittycatborgs/kittyborg/kittyborg_sec.dmi'
+			cyborg_icon_override = 'modular_bluemoon/icons/mob/kittycatborgs/kittyborg/Kittyborg_sec.dmi'
 			moduleselect_alternate_icon = 'modular_citadel/icons/ui/screen_cyborg.dmi'
 			dogborg = TRUE
 		if("Dragon") // WhiteMoon Port (Dragonborg)
@@ -2405,7 +2408,7 @@
 		/obj/item/card/emag,
 		/obj/item/pinpointer/syndicate_cyborg,
 		/obj/item/stack/medical/gauze/cyborg,
-		/obj/item/gun/medbeam,
+		/obj/item/gun/medbeam/syndicate,
 		/obj/item/organ_storage)
 	ratvar_modules = list(
 		/obj/item/clockwork/slab/cyborg/medical,

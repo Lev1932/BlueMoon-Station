@@ -20,8 +20,6 @@
 	var/firing_effect_type = /obj/effect/temp_visual/dir_setting/firing_effect	//the visual effect appearing when the ammo is fired.
 	var/heavy_metal = TRUE
 	var/harmful = TRUE //pacifism check for boolet, set to FALSE if bullet is non-lethal
-	/// Zero-G recoil strength (added to existing drift via newtonian_impulse)
-	var/newtonian_force = 1
 	var/can_be_printed = TRUE
 	/// If it can be printed, does this casing require an advanced ammunition datadisk? Mainly for specialized ammo.
 	/// Rubbers aren't advanced. Standard ammo (or FMJ if you're particularly pedantic) isn't advanced.
@@ -48,7 +46,11 @@
 
 /obj/item/ammo_casing/examine(mob/user)
 	. = ..()
-	. += "<span class='notice'>Пробитие: BR[get_br_level()] ([BB.armour_penetration]% AP)</span>"
+	//у стреляной гильзы BB уже нет - осмотр такой падал на armour_penetration
+	if(!BB)
+		. += span_notice("Пробитие: гильза стреляная.")
+		return
+	. += span_notice("Пробитие: BR[get_br_level()] ([BB.armour_penetration]% AP)")
 
 /obj/item/ammo_casing/spent
 	name = "spent bullet casing"

@@ -113,11 +113,10 @@
 		. += "Здоровье хозяина: [resulthealth]%"
 		if(GLOB.ratvar_awakens)
 			. += "Вы [recovering ? "не" : ""] можете появиться!"
+		else if(resulthealth > GUARDIAN_EMERGE_THRESHOLD)
+			. += "Вы [recovering ? "не можете появиться" : "можете появиться при произнесении вашего настоящего имени"]!"
 		else
-			if(resulthealth > GUARDIAN_EMERGE_THRESHOLD)
-				. += "Вы [recovering ? "не можете появиться" : "можете появиться при произнесении вашего настоящего имени"]!"
-			else
-				. += "Вы [recovering ? "не можете появиться" : "можете появиться для защиты хозяина"]!"
+			. += "Вы [recovering ? "не можете появиться" : "можете появиться для защиты хозяина"]!"
 	. += "При ближнем бою вы наносите [melee_damage_upper] единиц урона."
 
 /mob/living/simple_animal/hostile/clockwork/marauder/get_status_tab_items()
@@ -131,15 +130,14 @@
 		. += "Здоровье хозяина: [resulthealth]%"
 		if(GLOB.ratvar_awakens)
 			. += "Вы [recovering ? "не" : ""] можете появиться!"
+		else if(resulthealth > GUARDIAN_EMERGE_THRESHOLD)
+			. += "Вы [recovering ? "не можете появиться" : "можете появиться при произнесении вашего настоящего имени"]!"
 		else
-			if(resulthealth > GUARDIAN_EMERGE_THRESHOLD)
-				. += "Вы [recovering ? "не можете появиться" : "можете появиться при произнесении вашего настоящего имени"]!"
-			else
-				. += "Вы [recovering ? "не можете появиться" : "можете появиться для защиты хозяина"]!"
+			. += "Вы [recovering ? "не можете появиться" : "можете появиться для защиты хозяина"]!"
 	. += "При ближнем бою вы наносите [melee_damage_upper] единиц урона."
 
 
-/mob/living/simple_animal/hostile/clockwork/guardian/Process_Spacemove(movement_dir = 0, continuous_move = FALSE)
+/mob/living/simple_animal/hostile/clockwork/guardian/Process_Spacemove(movement_dir = 0)
 	return TRUE
 
 /mob/living/simple_animal/hostile/clockwork/guardian/proc/bind_to_host(mob/living/new_host)
