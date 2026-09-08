@@ -476,34 +476,34 @@
 	rad_flags = RAD_NO_CONTAMINATE
 
 // Спрайты принадлежат cnaperdodo
-/obj/item/clothing/head/donator/bm/hood_armored
-	name = "Большой капюшон"
-	desc = "Большой капюшон, используемый террористами и контробандистами для маскировки. Обеспечивает некоторую защиту головы благодаря прочным волокнам, используемым при производстве."
-	icon = 'modular_bluemoon/fluffs/icons/obj/clothing/cnaperdodo_hood_armored.dmi'
-	mob_overlay_icon = 'modular_bluemoon/fluffs/icons/mob/clothing/cnaperdodo_hood_armored.dmi'
-	icon_state = "hood_armored"
-	lefthand_file = 'modular_bluemoon/fluffs/icons/mob/inhands/clothing_left.dmi'
-	righthand_file = 'modular_bluemoon/fluffs/icons/mob/inhands/clothing_right.dmi'
-	item_state = "empire_head"
-	body_parts_covered = HEAD
-	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR|HIDESNOUT
-	armor = list(MELEE = 15, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 10, BIO = 0, RAD = 0, FIRE = 20, ACID = 0)
-	mutantrace_variation = STYLE_DIGITIGRADE|STYLE_NO_ANTHRO_ICON
+// /obj/item/clothing/head/donator/bm/hood_armored
+// 	name = "Большой капюшон"
+// 	desc = "Большой капюшон, используемый террористами и контробандистами для маскировки. Обеспечивает некоторую защиту головы благодаря прочным волокнам, используемым при производстве."
+// 	icon = 'modular_bluemoon/fluffs/icons/obj/clothing/cnaperdodo_hood_armored.dmi'
+// 	mob_overlay_icon = 'modular_bluemoon/fluffs/icons/mob/clothing/cnaperdodo_hood_armored.dmi'
+// 	icon_state = "hood_armored"
+// 	lefthand_file = 'modular_bluemoon/fluffs/icons/mob/inhands/clothing_left.dmi'
+// 	righthand_file = 'modular_bluemoon/fluffs/icons/mob/inhands/clothing_right.dmi'
+// 	item_state = "empire_head"
+// 	body_parts_covered = HEAD
+// 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR|HIDESNOUT
+// 	armor = list(MELEE = 15, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 10, BIO = 0, RAD = 0, FIRE = 20, ACID = 0)
+// 	mutantrace_variation = STYLE_DIGITIGRADE|STYLE_NO_ANTHRO_ICON
 
 // Спрайты принадлежат cnaperdodo
-/obj/item/clothing/suit/armor/donator/bm/rebel_armor
-	name = "Кольчуга контрабандистов"
-	desc = "Кольчуга контрабандистов, изготовленная из вареной кожи и некоторых современных бронепластин. Хотя это не самый мощный вид брони и примитивный по сравнению с большинством современных брони, он обеспечивает почти идеальную мобильность, что соответствует потребностям местных колонистов. Его также быстро надевают, легко прячут и дешево изготавливают в больших мастерских."
-	icon = 'modular_bluemoon/fluffs/icons/obj/clothing/cnaperdodo_rebel_armor.dmi'
-	mob_overlay_icon = 'modular_bluemoon/fluffs/icons/mob/clothing/cnaperdodo_rebel_armor.dmi'
-	icon_state = "rebel_armor_full"
-	lefthand_file = 'modular_bluemoon/fluffs/icons/mob/inhands/clothing_left.dmi'
-	righthand_file = 'modular_bluemoon/fluffs/icons/mob/inhands/clothing_right.dmi'
-	item_state = "officer_armor"
-	body_parts_covered = CHEST|GROIN
-	armor = list(MELEE = 25, BULLET = 25, LASER = 20, ENERGY = 15, BOMB = 20, BIO = 10, RAD = 0, FIRE = 30, ACID = 20)
-	slowdown = 0
-	mutantrace_variation = STYLE_DIGITIGRADE|STYLE_NO_ANTHRO_ICON
+// /obj/item/clothing/suit/armor/donator/bm/rebel_armor
+// 	name = "Кольчуга контрабандистов"
+// 	desc = "Кольчуга контрабандистов, изготовленная из вареной кожи и некоторых современных бронепластин. Хотя это не самый мощный вид брони и примитивный по сравнению с большинством современных брони, он обеспечивает почти идеальную мобильность, что соответствует потребностям местных колонистов. Его также быстро надевают, легко прячут и дешево изготавливают в больших мастерских."
+// 	icon = 'modular_bluemoon/fluffs/icons/obj/clothing/cnaperdodo_rebel_armor.dmi'
+// 	mob_overlay_icon = 'modular_bluemoon/fluffs/icons/mob/clothing/cnaperdodo_rebel_armor.dmi'
+// 	icon_state = "rebel_armor_full"
+// 	lefthand_file = 'modular_bluemoon/fluffs/icons/mob/inhands/clothing_left.dmi'
+// 	righthand_file = 'modular_bluemoon/fluffs/icons/mob/inhands/clothing_right.dmi'
+// 	item_state = "officer_armor"
+// 	body_parts_covered = CHEST|GROIN
+// 	armor = list(MELEE = 25, BULLET = 25, LASER = 20, ENERGY = 15, BOMB = 20, BIO = 10, RAD = 0, FIRE = 30, ACID = 20)
+// 	slowdown = 0
+// 	mutantrace_variation = STYLE_DIGITIGRADE|STYLE_NO_ANTHRO_ICON
 
 /obj/item/clothing/suit/armor/wy_expensive_fur_trenchcoat
     name = "Expensive trenchcoat"
@@ -907,3 +907,24 @@
 	item_state = "wypmcmedical_hat"
 	icon = 'modular_bluemoon/fluffs/icons/obj/clothing/head.dmi'
 	mob_overlay_icon = 'modular_bluemoon/fluffs/icons/mob/clothing/head.dmi'
+
+/obj/item/modkit/light_plate_carrier
+	name = "Light plate carrier Armor Kit"
+	desc = "A modkit for making an armor vest into a Light plate carrier Armor."
+	product = /obj/item/clothing/suit/armor/vest/light_plate_carrier
+	fromitem = list(/obj/item/clothing/suit/armor/vest/peacekeeper, /obj/item/clothing/suit/armor/vest/alt)
+
+/obj/item/clothing/suit/armor/vest/light_plate_carrier
+	name = "Light plate carrier"
+	desc = "An ergonomic plate carrier, manufactured by Hephaestus Industries. Basically the same plate carrier you beg for in the armory, but with no pouches attached and with a set of lighter plates inserted."
+	icon_state = "light_plate_carrier"
+	item_state = "light_plate_carrier"
+	dog_fashion = null
+	icon = 'modular_bluemoon/fluffs/icons/obj/clothing/suit.dmi'
+	mob_overlay_icon = 'modular_bluemoon/fluffs/icons/mob/clothing/suit.dmi'
+	unique_reskin = list(
+		"Black" = list("icon_state" = "light_plate_carrier", "item_state" = "light_plate_carrier"),
+		"Tan" = list("icon_state" = "light_plate_carrier_tan", "item_state" = "light_plate_carrier_tan"),
+		"Navy" = list("icon_state" = "light_plate_carrier_navy", "item_state" = "light_plate_carrier_navy"),
+		"Green" = list("icon_state" = "light_plate_carrier_green", "item_state" = "light_plate_carrier_green")
+	)

@@ -1,5 +1,5 @@
 /datum/job/expeditor
-	title = "Vanguard operative"
+	title = "Vanguard Operative"
 	flag = EXPEDITOR
 	department_head = list("Captain", "Research Director")
 	department_flag = MEDSCI
@@ -25,15 +25,15 @@
 	blacklisted_quirks = list(/datum/quirk/mute, /datum/quirk/brainproblems, /datum/quirk/prosopagnosia, /datum/quirk/insanity)
 	threat = 2
 	alt_titles = list(
-		"Junior Vanguard operative", //Стажер выше, для удобства
+		"Junior Vanguard Operative", //Стажер выше, для удобства
 		"Vanguard Trainee", //Стажер выше, для удобства
-		"Space diver",
-		"Gateway diver",
+		"Space Diver",
+		"Gateway Diver",
 		"Vanguard Combatant",
 		"Exploration Mercenary",
 		"Vanguard Field Medic",
-		"Vanguard recruit",
-		"Vanguard Demolition expert",
+		"Vanguard Recruit",
+		"Vanguard Demolition Expert",
 		"Ranger",
 		"Expeditor"
 		)
@@ -47,7 +47,7 @@
 	uniform = /obj/item/clothing/under/syndicate/combat/exp
 //	suit = /obj/item/clothing/suit/armor/vest/exp
 //	head = /obj/item/clothing/head/helmet/exp
-	gloves = /obj/item/clothing/gloves/tackler/combat/insulated
+	gloves = /obj/item/clothing/gloves/combat // раундстартовые горилки ВСЁ
 	glasses = /obj/item/clothing/glasses/sunglasses
 	shoes = /obj/item/clothing/shoes/jackboots/tall_default
 //	suit_store = /obj/item/gun/energy/e_gun/mini/expeditor
@@ -65,7 +65,7 @@
 	uniform = /obj/item/clothing/under/syndicate/combat/exp
 //	suit = /obj/item/clothing/suit/armor/vest/exp
 //	head = /obj/item/clothing/head/helmet/exp
-	gloves = /obj/item/clothing/gloves/tackler/combat/insulated
+	gloves = /obj/item/clothing/gloves/combat
 	glasses = /obj/item/clothing/glasses/sunglasses
 	shoes = /obj/item/clothing/shoes/combat
 //	suit_store = /obj/item/gun/energy/e_gun/mini/expeditor

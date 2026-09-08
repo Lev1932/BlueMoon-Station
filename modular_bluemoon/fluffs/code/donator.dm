@@ -1562,17 +1562,17 @@
 	path = /obj/item/clothing/suit/hooded/bm/donator/cybercoat
 	ckeywhitelist = list("cnaperdodo")
 
-/datum/gear/donator/bm/hood_armored
-	name = "Большой капюшон"
-	slot = ITEM_SLOT_HEAD
-	path = /obj/item/clothing/head/donator/bm/hood_armored
-	ckeywhitelist = list("cnaperdodo")
+// /datum/gear/donator/bm/hood_armored
+// 	name = "Большой капюшон"
+// 	slot = ITEM_SLOT_HEAD
+// 	path = /obj/item/clothing/head/donator/bm/hood_armored
+// 	ckeywhitelist = list("cnaperdodo")
 
-/datum/gear/donator/bm/rebel_armor
-	name = "Кольчуга контрабандистов"
-	slot = ITEM_SLOT_OCLOTHING
-	path = /obj/item/clothing/suit/armor/donator/bm/rebel_armor
-	ckeywhitelist = list("cnaperdodo")
+// /datum/gear/donator/bm/rebel_armor
+// 	name = "Кольчуга контрабандистов"
+// 	slot = ITEM_SLOT_OCLOTHING
+// 	path = /obj/item/clothing/suit/armor/donator/bm/rebel_armor
+// 	ckeywhitelist = list("cnaperdodo")
 
 /datum/gear/donator/bm/clf_uniform
 	name = "Перекрашенный комплект ЧВК"
@@ -1708,9 +1708,9 @@
 	ckeywhitelist = list("kladmenuwu")
 
 /datum/gear/donator/bm/modsuit_syndicate
-	name = "Syndicate Modsuit Plate"
+	name = "Syndicate Modsuit modkit"
 	slot = ITEM_SLOT_BACKPACK
-	path = /obj/item/mod/construction/armor/security/syndicate
+	path = /obj/item/modsuit_modkit/syndicate_sec
 	ckeywhitelist = list("domilion")
 	restricted_desc = "Security, Head of Security, Warden, Detective, Security Officer, Brig Physician, Peacekeeper, Blueshield."
 	restricted_roles = list("Captain", "Head of Security", "Warden", "Detective", "Security Officer", "Brig Physician", "Peacekeeper", "Blueshield")
@@ -2483,7 +2483,7 @@
 	name = "Skull mask"
 	slot = ITEM_SLOT_MASK
 	path = /obj/item/clothing/mask/gas/syndicate/pmc_skull_mask
-	ckeywhitelist = list("hateredsoul")
+	ckeywhitelist = list("hateredsoul", "hartty")
 
 /datum/gear/donator/bm/sc_winter_coat
 	name = "Security winter coat"
@@ -2579,6 +2579,12 @@
 	path = /obj/item/modkit/vp78tactic
 	ckeywhitelist = list("rockymed", "hartty", "leony24", "dragon9090")
 
+/datum/gear/donator/bm/flag_marine
+	name = "UA flag"
+	slot = ITEM_SLOT_BACKPACK
+	path = /obj/item/sign/flag/marine/ua
+	ckeywhitelist = list("rockymed")
+
 /datum/gear/donator/bm/kumikoshouko_case
 	name = "Kumiko Weapon Case"
 	slot = ITEM_SLOT_BACKPACK
@@ -2626,3 +2632,57 @@
 	slot = ITEM_SLOT_MASK
 	path = /obj/item/clothing/mask/gas/syndicate/wypmc_gasmask
 	ckeywhitelist = list("foxrtotlimda")
+
+/datum/gear/donator/bm/atomas_fluted_armor
+	name = "Fluted Plate Armor"
+	slot = ITEM_SLOT_ICLOTHING
+	path = /obj/item/clothing/under/donator/bm/fulted_plate_armor
+	ckeywhitelist = list("atomas")
+
+/datum/gear/donator/bm/atomas_hounskull
+	name = "Hounskull With Aventail"
+	slot = ITEM_SLOT_HEAD
+	path = /obj/item/clothing/head/donator/bm/hounskull_with_aventail
+	ckeywhitelist = list("atomas")
+
+/datum/gear/donator/bm/melatonin_bodysuit
+	name = "Lycanthrope's Form-Fitting Bodysuit"
+	slot = ITEM_SLOT_ICLOTHING
+	path = /obj/item/clothing/under/donator/bm/melatonin_bodysuit
+	ckeywhitelist = list("melatonin1")
+
+/datum/gear/donator/bm/melatonin_coat
+	name = "Lycanthrope's Reinforced Coat"
+	slot = ITEM_SLOT_OCLOTHING
+	path = /obj/item/clothing/suit/donator/bm/melatonin_coat
+	ckeywhitelist = list("melatonin1")
+
+/datum/gear/donator/bm/melatonin_kit
+	name = "Melatonin Kit Box"
+	slot = ITEM_SLOT_BACKPACK
+	path = /obj/item/storage/box/melatonin_kit
+	ckeywhitelist = list("melatonin1")
+
+/datum/gear/donator/bm/sawwr_coat
+	name = "Dark Amber"
+	slot = ITEM_SLOT_NECK
+	path = /obj/item/clothing/neck/tie/sawwr_coat
+	ckeywhitelist = list("hartty", "sawwarrr")
+
+/datum/gear/donator/bm/sawwr_ice_axe_kit
+	name = "Ice Axe Kit"
+	slot = ITEM_SLOT_BACKPACK
+	path = /obj/item/modkit/ice_axe_kit
+	ckeywhitelist = list("hartty")
+
+/datum/gear/donator/bm/the_stylish_one_tracksuit
+	name = "The stylish one's tracksuit"
+	slot = ITEM_SLOT_ICLOTHING
+	path = /obj/item/clothing/under/donator/bm/the_stylish_one_tracksuit
+	ckeywhitelist = list("hartty", "meowonty")
+
+/datum/gear/donator/bm/light_plate_carrier
+	name = "Light plate carrier"
+	slot = ITEM_SLOT_BACKPACK
+	path = /obj/item/modkit/light_plate_carrier
+	ckeywhitelist = list("hartty", "spoopyman228", "dalphy12", "leony24", "rockymed")

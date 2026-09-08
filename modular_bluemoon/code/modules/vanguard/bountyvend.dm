@@ -17,23 +17,6 @@
 	w_class = WEIGHT_CLASS_TINY
 
 // ============================================
-// DATUM ДЛЯ ТОВАРОВ
-// ============================================
-/datum/data/bounty_equipment
-	var/equipment_name = "generic"
-	var/equipment_path = null
-	var/cost = 0
-	var/category = ""
-	var/base_cost = 0
-
-/datum/data/bounty_equipment/New(name, path, cost, category)
-	src.equipment_name = name
-	src.equipment_path = path
-	src.cost = cost
-	src.category = category
-	src.base_cost = cost
-
-// ============================================
 // BOUNTY VEND
 // ============================================
 /obj/machinery/bountyvend
@@ -49,52 +32,91 @@
 	circuit = /obj/item/circuitboard/machine/bountyvend
 	var/icon_deny = "syndicate-marine-deny"
 
-	var/list/prize_config = list(
-		list("name" = "Premium KA", "path" = /obj/item/gun/energy/kinetic_accelerator/premiumka, "cost" = 1250, "category" = "Weaponry"),
-		list("name" = "Combat knife", "path" = /obj/item/kitchen/knife/combat, "cost" = 100, "category" = "Weaponry"),
-		list("name" = "Electronic Firing Pin", "path" = /obj/item/firing_pin, "cost" = 500, "category" = "Weaponry"),
-		list("name" = "Supressor", "path" = /obj/item/suppressor, "cost" = 500, "category" = "Weaponry"),
-		list("name" = "Munitions datadisk", "path" = /obj/item/disk/ammo_workbench/advanced, "cost" = 1000, "category" = "Weaponry"),
-		list("name" = "Vanguard specialization", "path" = /obj/item/vanguard_voucher_class, "cost" = 2000, "category" = "Weaponry"),
-		list("name" = "Sig Suaer extended mag", "path" = /obj/item/ammo_box/magazine/sig/sig_ext, "cost" = 500, "category" = "Weaponry"),
-		list("name" = "Vanguard armor", "path" = /obj/item/vanguard_voucher_suit, "cost" = 1500, "category" = "Armor"),
-		list("name" = "Ranger hardsuit", "path" = /obj/item/clothing/suit/space/hardsuit/exploration, "cost" = 2500, "category" = "Armor"),
-		list("name" = "Combined armor kit", "path" = /obj/item/armorkit/vanguard/vest, "cost" = 750, "category" = "Armor"),
-		list("name" = "Combined headgear kit", "path" = /obj/item/armorkit/vanguard/helmet, "cost" = 750, "category" = "Armor"),
-		list("name" = "Jet harness", "path" = /obj/item/tank/jetpack/oxygen/harness, "cost" = 1500, "category" = "Armor"),
-		list("name" = "Jetpack upgrade", "path" = /obj/item/tank/jetpack/suit, "cost" = 1000, "category" = "Armor"),
-		list("name" = "Vanguard modsuit", "path" = /obj/item/mod/control/pre_equipped/expeditor, "cost" = 5000, "category" = "Armor"),
-		list("name" = "Jump boots", "path" = /obj/item/clothing/shoes/bhop, "cost" = 1250, "category" = "Armor"),
-		list("name" = "First-Aid Kit", "path" = /obj/item/storage/firstaid/regular, "cost" = 25, "category" = "Medical"),
-		list("name" = "Brute First-Aid Kit", "path" = /obj/item/storage/firstaid/brute, "cost" = 50, "category" = "Medical"),
-		list("name" = "Burn First-Aid Kit", "path" = /obj/item/storage/firstaid/fire, "cost" = 50, "category" = "Medical"),
-		list("name" = "Survival Medipen", "path" = /obj/item/reagent_containers/hypospray/medipen/survival, "cost" = 100, "category" = "Medical"),
-		list("name" = "CMS", "path" = /obj/item/stack/medical/fracture_kit/cms, "cost" = 150, "category" = "Medical"),
-		list("name" = "Budget tactical first aid", "path" = /obj/item/storage/firstaid/tactical/vanguard, "cost" = 5000, "category" = "Medical"),
-		list("name" = "Surv12", "path" = /obj/item/stack/medical/fracture_kit/surv12, "cost" = 250, "category" = "Medical"),
-		list("name" = "Lazarus injector", "path" = /obj/item/lazarus_injector, "cost" = 500, "category" = "Tools"),
-		list("name" = "Fulton pack", "path" = /obj/item/extraction_pack, "cost" = 500, "category" = "Tools"),
-		list("name" = "Auto surgeon", "path" = /obj/item/autosurgeon, "cost" = 750, "category" = "Tools"),
-		list("name" = "Illegal technology disk", "path" = /obj/item/disk/tech_disk/illegal, "cost" = 5000, "category" = "Tools"),
-		list("name" = "Fulton beacon", "path" = /obj/item/fulton_core, "cost" = 200, "category" = "Tools"),
-		list("name" = "BEPIS technology disk", "path" = /obj/item/disk/tech_disk/major, "cost" = 1000, "category" = "Tools"),
-		list("name" = "Vanguard basic kit", "path" = /obj/item/storage/backpack/duffelbag/vanguard/conscript, "cost" = 1500, "category" = "Tools"),
-		list("name" = "Vanguard points transfer card", "path" = /obj/item/card/contraband_point_card, "cost" = 100, "category" = "Tools"),
-		list("name" = "Whiskey", "path" = /obj/item/reagent_containers/food/drinks/bottle/whiskey, "cost" = 50, "category" = "Recreational"),
-		list("name" = "Cigar", "path" = /obj/item/clothing/mask/cigarette/cigar/havana, "cost" = 75, "category" = "Recreational"),
-		list("name" = "High quality Soap", "path" = /obj/item/soap/syndie, "cost" = 150, "category" = "Recreational"),
-		list("name" = "MRE pack", "path" = /obj/item/storage/box/mre/menu2, "cost" = 300, "category" = "Recreational"),
-		list("name" = "1 Metadollar", "path" = /obj/item/stack/metadollar, "cost" = 25000, "category" = "Miscellaneous"),
-		list("name" = "space cash", "path" = /obj/item/stack/spacecash/c1000, "cost" = 1500, "category" = "Miscellaneous"),
+	var/list/prize_list = list(
+		// ============ WEAPONRY ============
+		new /datum/data/bounty_equipment("Premium KA",					/obj/item/gun/energy/kinetic_accelerator/premiumka,					1250,	"Weaponry"),
+		new /datum/data/bounty_equipment("Combat knife",				/obj/item/kitchen/knife/combat,					        			100,	"Weaponry"),
+		new /datum/data/bounty_equipment("Electronic Firing Pin",		/obj/item/firing_pin,												500,	"Weaponry"),
+		new /datum/data/bounty_equipment("Supressor",               	/obj/item/suppressor,                                   			500, 	"Weaponry"),
+		new /datum/data/bounty_equipment("Munitions datadisk",      	/obj/item/disk/ammo_workbench/advanced,                     		1000, 	"Weaponry"),
+		new /datum/data/bounty_equipment("Vanguard specialization",		/obj/item/vanguard_voucher_class,									2000,	"Weaponry"),
+		new /datum/data/bounty_equipment("Sig Suaer extended mag",		/obj/item/ammo_box/magazine/sig/sig_ext,							500,	"Weaponry"),
+
+		// ============ ARMOR ============
+		new /datum/data/bounty_equipment("Vanguard armor",					/obj/item/vanguard_voucher_suit,								1500,	"Armor"),
+		new /datum/data/bounty_equipment("Ranger hardsuit",					/obj/item/clothing/suit/space/hardsuit/exploration,				2500,	"Armor"),
+		new /datum/data/bounty_equipment("Combined armor kit",				/obj/item/armorkit/vanguard/vest,								750,	"Armor"),
+		new /datum/data/bounty_equipment("Combined headgear kit",			/obj/item/armorkit/vanguard/helmet,								750,	"Armor"),
+		new /datum/data/bounty_equipment("Jet harness",						/obj/item/tank/jetpack/oxygen/harness,							1500,	"Armor"),
+		new /datum/data/bounty_equipment("Jetpack upgrade",					/obj/item/tank/jetpack/suit,									1000,	"Armor"),
+		new /datum/data/bounty_equipment("Vanguard modsuit",				/obj/item/mod/control/pre_equipped/expeditor,					5000,	"Armor"),
+		new /datum/data/bounty_equipment("Jump boots",						/obj/item/clothing/shoes/bhop,									1250,	"Armor"),
+		new /datum/data/bounty_equipment("Guerrilla Gloves",				/obj/item/clothing/gloves/tackler/combat/insulated,				3000,	"Armor"),
+
+		// ============ MEDICAL ============
+		new /datum/data/bounty_equipment("First-Aid Kit",					/obj/item/storage/firstaid/regular,								25,		"Medical"),
+		new /datum/data/bounty_equipment("Brute First-Aid Kit",				/obj/item/storage/firstaid/brute,								50,		"Medical"),
+		new /datum/data/bounty_equipment("Burn First-Aid Kit",				/obj/item/storage/firstaid/fire,								50,		"Medical"),
+		new /datum/data/bounty_equipment("Survival Medipen",				/obj/item/reagent_containers/hypospray/medipen/survival,		100,	"Medical"),
+		new /datum/data/bounty_equipment("CMS",								/obj/item/stack/medical/fracture_kit/cms,						150,	"Medical"),
+		new /datum/data/bounty_equipment("Surv12",							/obj/item/stack/medical/fracture_kit/surv12,					250,	"Medical"),
+
+		// ============ TOOLS ============
+		new /datum/data/bounty_equipment("Lazarus injector",				/obj/item/lazarus_injector,										500,	"Tools"),
+		new /datum/data/bounty_equipment("Fulton pack",						/obj/item/extraction_pack,										500,	"Tools"),
+		new /datum/data/bounty_equipment("Auto surgeon",					/obj/item/autosurgeon,											750,	"Tools"),
+		new /datum/data/bounty_equipment("Illegal technology disk",			/obj/item/disk/tech_disk/illegal,								5000,	"Tools"),
+		new /datum/data/bounty_equipment("Fulton beacon",					/obj/item/fulton_core,											200,	"Tools"),
+		new /datum/data/bounty_equipment("BEPIS technology disk",			/obj/item/disk/tech_disk/major,									1000,	"Tools"),
+		new /datum/data/bounty_equipment("Vanguard basic kit",				/obj/item/storage/backpack/duffelbag/vanguard/conscript,		1500,	"Tools"),
+		new /datum/data/bounty_equipment("Vanguard points transfer card",	/obj/item/card/contraband_point_card,							100,	"Tools"),
+
+		// ============ RECREATIONAL ============
+		new /datum/data/bounty_equipment("Whiskey",							/obj/item/reagent_containers/food/drinks/bottle/whiskey,		50,		"Recreational"),
+		new /datum/data/bounty_equipment("Cigar",							/obj/item/clothing/mask/cigarette/cigar/havana,					75,		"Recreational"),
+		new /datum/data/bounty_equipment("High quality Soap",				/obj/item/soap/syndie,											150,	"Recreational"),
+		new /datum/data/bounty_equipment("MRE pack",						/obj/item/storage/box/mre/menu2,								300,	"Recreational"),
+
+		// ============ MOD DESIGNS ============
+		new /datum/data/bounty_equipment("Extended MOD storage module",				/obj/item/mod/module/storage/extended,					2000,		"MOD Designs"),
+		new /datum/data/bounty_equipment("MOD advanced ion jetpack module",			/obj/item/mod/module/jetpack/advanced,					5000,		"MOD Designs"),
+		new /datum/data/bounty_equipment("MOD DNA lock module",						/obj/item/mod/module/dna_lock,							7500,		"MOD Designs"),
+		new /datum/data/bounty_equipment("MOD Storage Upgrader",					/obj/item/mod/module/storage_upgrader,					15000,		"MOD Designs"),
+
+		// ============ ELITE EQUIPMENT =========
+		new /datum/data/bounty_equipment("ACR-5m26",						/obj/item/gun/ballistic/automatic/acr5m30,						20000,		"Elite Equipment"),
+		new /datum/data/bounty_equipment("Budget tactical first aid",		/obj/item/storage/firstaid/tactical/vanguard,					5000,		"Elite Equipment"),
+		new /datum/data/bounty_equipment("ACR-5m26 spare mag (empty)",		/obj/item/ammo_box/magazine/acr5m30/empty,						2500,		"Elite Equipment"),
+		new /datum/data/bounty_equipment("Hoshi modular laser",				/obj/item/gun/energy/modular_laser_rifle/carbine,				25000,		"Elite Equipment"),
+		new /datum/data/bounty_equipment("С-02 Permit",						/obj/item/clothing/accessory/permit/special/c_02,				10000,		"Elite Equipment"),
+		new /datum/data/bounty_equipment("ERT MOD Suit",					/obj/item/mod/control/pre_equipped/responsory,					50000,		"Elite Equipment"),
+		new /datum/data/bounty_equipment("Department Prototlathe beacon",	/obj/item/choice_beacon/departmental_protholate,				20000,		"Elite Equipment"),
+		new /datum/data/bounty_equipment("Syndicate Baloon",				/obj/item/toy/syndicateballoon,									1000000,	"Elite Equipment"),
+		new /datum/data/bounty_equipment("Medbeam Gun",						/obj/item/gun/medbeam,											30000,		"Elite Equipment"),
 	)
 
-	var/list/prize_list = list()
+/datum/data/bounty_equipment
+	var/equipment_name = "generic"
+	var/equipment_path = null
+	var/cost = 0
+	var/category = ""
+	var/base_cost = 0
+
+/datum/data/bounty_equipment/New(name, path, cost, category)
+	src.equipment_name = name
+	src.equipment_path = path
+	src.cost = cost
+	src.category = category
+	src.base_cost = cost
 
 /obj/machinery/bountyvend/Initialize(mapload)
 	. = ..()
-	for(var/list/config in prize_config)
-		var/datum/data/bounty_equipment/prize = new(config["name"], config["path"], config["cost"], config["category"])
-		prize_list += prize
+	build_inventory()
+
+/obj/machinery/bountyvend/proc/build_inventory()
+	for(var/p in prize_list)
+		var/datum/data/bounty_equipment/M = p
+		GLOB.vending_products[M.equipment_path] = 1
 
 /obj/machinery/bountyvend/update_icon_state()
 	if(powered())
@@ -148,7 +170,7 @@
 		)
 		records += list(product_data)
 	.["product_records"] = records
-	.["categories"] = list("Weaponry", "Armor", "Medical", "Tools", "Recreational", "Miscellaneous")
+	.["categories"] = list("Weaponry", "Armor", "Medical", "Tools", "Recreational", "Miscellaneous", "Elite Equipment", "MOD Designs")
 	.["discount"] = get_discount()
 
 /obj/machinery/bountyvend/ui_data(mob/user)
@@ -178,6 +200,9 @@
 			var/datum/data/bounty_equipment/prize = locate(params["ref"]) in prize_list
 			if(!prize || !(prize in prize_list))
 				to_chat(usr, "<span class='alert'>Error: Invalid choice!</span>")
+				flick(icon_deny, src)
+				return
+			if(ispath(prize.equipment_path, /obj/item/stack/metadollar) && !bm_bounty_vendor_can_buy_metadollar(usr))
 				flick(icon_deny, src)
 				return
 			if(prize.cost > I.contraband_points)
@@ -218,17 +243,19 @@
 			new /obj/item/storage/secure/briefcase/vanguard/lasgun(drop_location)
 			new /obj/item/storage/belt/military/assault/demolition(drop_location)
 			new /obj/item/extinguisher/mini(drop_location)
-			new /obj/item/storage/box/red/demolition(drop_location)
+			new /obj/item/storage/box/demolition(drop_location)
 		if("Field Surgeon")
 			new /obj/item/stack/medical/fracture_kit/cms(drop_location)
-			new /obj/item/storage/belt/military/assault/surgeon(drop_location)
+			new /obj/item/storage/firstaid/frontier(drop_location)
 			new /obj/item/melee/tomahawk(drop_location)
-			new /obj/item/storage/box/blue/surgeon(drop_location)
+			new /obj/item/storage/firstaid/vanguard(drop_location)
 			new /obj/item/shield/riot/pointman(drop_location)
+			new /obj/item/defibrillator/compact/loaded(drop_location)
 		if("Combatant")
 			new /obj/item/storage/secure/briefcase/vanguard/p320(drop_location)
 			new /obj/item/storage/belt/military/assault(drop_location)
-			new /obj/item/storage/box/orange/combatant(drop_location)
+			new /obj/item/storage/bag/medpen/combatant(drop_location)
+			new /obj/item/storage/bag/marksman(drop_location)
 	playsound(src, 'sound/machines/machine_vend.ogg', 50, TRUE, extrarange = -3)
 	SSblackbox.record_feedback("tally", "vanguard_voucher_redeemed", 1, selection)
 	qdel(voucher)
@@ -253,10 +280,14 @@
 	SSblackbox.record_feedback("tally", "suit_voucher_redeemed", 1, selection)
 	qdel(voucher)
 
-///Basic kit
+
+// ============================================
+// ДОПОЛНИТЕЛЬНЫЕ ПРЕДМЕТЫ (Basic kit)
+// ============================================
+
 /obj/item/card/vanguard_access_card
 	name = "mining access card"
-	desc = "A small card, that when used on any ID, will add Vanguard operative access."
+	desc = "A small card, that when used on any ID, will add Vanguard Operative access."
 	icon_state = "data_1"
 
 /obj/item/card/vanguard_access_card/afterattack(atom/movable/AM, mob/user, proximity)
@@ -266,7 +297,7 @@
 		I.access |=	ACCESS_RESEARCH
 		I.access |= ACCESS_GATEWAY
 		I.access |= ACCESS_PRODUCTION_SCIENCE
-		to_chat(user, "You upgrade [I] with Vanguard operative access.")
+		to_chat(user, "You upgrade [I] with Vanguard Operative access.")
 		qdel(src)
 
 /obj/item/storage/backpack/duffelbag/vanguard/conscript
@@ -283,3 +314,35 @@
 	new /obj/item/kitchen/knife/combat(src)
 	new /obj/item/radio/headset/headset_exp(src)
 	new /obj/item/clothing/glasses/sunglasses(src)
+
+
+// Потому что нехорошие люди абьюзят метадолоровку - оставляю их только в специальном вендомате станции
+
+/obj/machinery/bountyvend/plus
+	name = "BountyVend Expert"
+	circuit = /obj/item/circuitboard/machine/bountyvend/plus
+
+/obj/machinery/bountyvend/plus/Initialize(mapload)
+	. = ..()
+	desc += "\nIt seems a few selections have been added."
+	prize_list += list(
+		// ============ MISCELLANEOUS ============
+		new /datum/data/bounty_equipment("1 Metadollar",            		/obj/item/stack/metadollar, 									50000, 	"Miscellaneous"),
+		new /datum/data/bounty_equipment("space cash",						/obj/item/stack/spacecash/c1000,								1500,	"Miscellaneous")
+		)
+	build_inventory()
+
+// и дабл чек что бы могли покупать только авангардцы
+/proc/bm_bounty_vendor_can_buy_metadollar(mob/user)
+	if(!ishuman(user))
+		to_chat(user, span_warning("Нужна гуманоидная форма."))
+		return FALSE
+	var/mob/living/carbon/human/H = user
+	if(!H.mind?.assigned_role)
+		to_chat(H, span_warning("Нужна зарегистрированная профессия."))
+		return FALSE
+	var/datum/job/J = SSjob.GetJob(H.mind.assigned_role)
+	if(!istype(J, /datum/job/expeditor))
+		to_chat(H, span_warning("Попридержи коней, приятель. Эта награда тебе не по зубам, доступна только настоящим оперативникам."))
+		return FALSE
+	return TRUE
