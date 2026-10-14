@@ -474,7 +474,7 @@
 			W.dropped(src)
 			if (W)
 				W.layer = initial(W.layer)
-				W.plane = initial(W.plane)
+				RESET_PLANE_EXPLICIT(W, W)
 		SetNextAction(0)
 	if (legcuffed)
 		var/obj/item/W = legcuffed
@@ -486,7 +486,7 @@
 			W.dropped(src)
 			if (W)
 				W.layer = initial(W.layer)
-				W.plane = initial(W.plane)
+				RESET_PLANE_EXPLICIT(W, W)
 		SetNextAction(0)
 	update_equipment_speed_mods() // In case cuffs ever change speed
 
@@ -1135,7 +1135,10 @@
 	if(handcuffed)
 		drop_all_held_items()
 		stop_pulling()
-		throw_alert("handcuffed", /atom/movable/screen/alert/restrained/handcuffed, new_master = src.handcuffed)
+		if(handcuffed.restrained_alert)
+			throw_alert("handcuffed", handcuffed.restrained_alert)
+		else
+			throw_alert("handcuffed", /atom/movable/screen/alert/restrained/handcuffed, new_master = src.handcuffed)
 		if(HAS_TRAIT(src, "bondaged"))
 			SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, QMOOD_BONDAGE, /datum/mood_event/bondage)	 //For bondage enjoyer quirk. - Gardelin0
 		if(handcuffed.demoralize_criminals)
@@ -1257,10 +1260,6 @@
  * возвращается из конструктора уже qdel-нутой. Вычищать её было некому:
  * handle_stomach() перебирал только /mob/living. Раунд 9813 - 20 конфетти
  * одним тиком, каждое с одной внешней ссылкой.
- *
- * Подписки на COMSIG_PARENT_QDELETING тут быть не может: ключ (цель, сигнал,
- * слушатель) уже занят clear_from_recent_examines, и override молча выбил бы
- * чужой обработчик у только что осмотренного и съеденного моба.
  */
 /mob/living/carbon/proc/add_to_stomach(atom/movable/swallowed)
 	if(QDELETED(swallowed) || (swallowed in stomach_contents))
