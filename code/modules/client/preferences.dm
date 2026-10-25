@@ -417,8 +417,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	//bad stuff
 	var/vore_flags = 0
 	var/list/belly_prefs = list()
-	var/vore_taste = "nothing in particular"
-	var/vore_smell = null
+	var/vore_taste = ""
+	var/vore_smell = ""
 	var/toggleeatingnoise = TRUE
 	var/toggledigestionnoise = TRUE
 	var/hound_sleeper = TRUE
@@ -569,6 +569,25 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/new_character_creator = TRUE
 	var/list/gfluid_blacklist = list()
 	var/fuzzy = FALSE
+	var/list/vending_layouts = list()
+	// Пресеты капсул сохраняются в профиле пользователя между раундами.
+	var/list/podlauncher_presets = list()
+
+/datum/preferences/proc/get_vending_layout(machine_type)
+	return vending_layouts["[machine_type]"] || "grid"
+
+/datum/preferences/proc/set_vending_layout(machine_type, layout)
+	if(!(ispath(machine_type, /obj/machinery/vending) || ispath(machine_type, /obj/machinery/smartfridge) || ispath(machine_type, /obj/machinery/equipment_vendor)))
+		return FALSE
+	if(!(layout in list("grid", "list")) || get_vending_layout(machine_type) == layout)
+		return FALSE
+	vending_layouts["[machine_type]"] = layout
+	save_single_pref("vending_layouts", vending_layouts.Copy())
+	var/list/open_uis = parent?.mob?.tgui_open_uis
+	for(var/datum/tgui/ui as anything in open_uis?.Copy())
+		if(ui.src_object?.type == machine_type)
+			ui.send_update()
+	return TRUE
 
 /datum/preferences/New(client/C)
 	if(!GLOB.genital_fluids_list)
@@ -1478,6 +1497,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					var/set_headshot_label = src.use_modern_translations ? get_modern_text("set_headshot", src) : "Set Headshot"
 					var/naked_headshots_label = src.use_modern_translations ? get_modern_text("naked_headshots", src) : "Naked (NSFW) Headshots"
 					var/set_naked_headshot_label = src.use_modern_translations ? get_modern_text("set_naked_headshot", src) : "Set Headshot"
+					var/taste_text_label = use_modern_translations ? get_modern_text("set_taste", src) : "Set Taste"
+					var/smell_text_label = use_modern_translations ? get_modern_text("set_smell", src) : "Set Smell"
 					dat += "<table width='100%'><tr><td width='30%' valign='top'>"
 
 					dat += "<h2>[flavor_text_label]</h2>"
@@ -1500,6 +1521,10 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					else
 						dat += "[copytext_char(naked_preview, 1, MAX_FLAVOR_PREVIEW_LEN)]...<BR><span style='color:#888;font-size:80%'>(исходник: [html_encode(TextPreview(features["naked_flavor_text"]))]...)</span><BR>"
 					//SPLURT edit end
+					dat += "<h2>[taste_text_label]</h2>"
+					dat += "<a href='?_src_=prefs;preference=set_taste;task=input'><b>[vore_taste ? "[copytext_char(vore_taste, 1, MAX_FLAVOR_PREVIEW_LEN)][length(vore_taste) > MAX_FLAVOR_PREVIEW_LEN ? "..." : "."]" : "\[...\]"]</b></a>"
+					dat += "<h2>[smell_text_label]</h2>"
+					dat += "<a href='?_src_=prefs;preference=set_smell;task=input'><b>[vore_smell ? "[copytext_char(vore_smell, 1, MAX_FLAVOR_PREVIEW_LEN)][length(vore_smell) > MAX_FLAVOR_PREVIEW_LEN ? "..." : "."]" : "\[...\]"]</b></a>"
 					// BLUEMOON ADD START - пользовательский эмоут смерти
 					dat += "<h2>[custom_deathgasp_label]</h2>"
 					dat += "<a href='?_src_=prefs;preference=custom_deathgasp;task=input'><b>[set_custom_deathgasp_label]</b></a><br>"
@@ -3603,6 +3628,14 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 					if(!isnull(msg))
 						features["naked_flavor_text"] = copytext_char(msg, 1, MAX_FLAVOR_LEN)
 
+				if("set_smell")
+					var/msg = tgui_input_text(usr, "Задайте описание запаха вашего персонажа. Его возможно узнать при обнюхивании (*sniff) персонажа. \nЭтот аромат можно описать как \[...\]", "Описание Запаха Персонажа", vore_smell, MAX_TASTE_LEN, TRUE, FALSE)
+					if(!isnull(msg))
+						vore_smell = msg
+				if("set_taste")
+					var/msg = tgui_input_text(usr, "Задайте описание вкуса вашего персонажа. Его возможно узнать при облизывании (*lick) персонажа. \nНа вкус можно описать как \[...\]", "Описание Вкуса Персонажа", vore_taste, MAX_TASTE_LEN, TRUE, FALSE)
+					if(!isnull(msg))
+						vore_taste = msg
 				//SPLURT edit end
 				if("silicon_flavor_text")
 					var/msg = tgui_input_text(usr, "Задайте особые признаки внешности своего синтетического (борга) персонажа!\nПоддерживается форматирование: *курсив* !жирный! -=цвет=-", "Описание Борга", features["silicon_flavor_text"], MAX_FLAVOR_LEN, TRUE, FALSE)
@@ -6237,6 +6270,32 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	if(isnull(.))
 		return 100
 
+// Административная выдача пересоздаёт квирки со всеми стартовыми эффектами и вещами.
+/datum/preferences/proc/apply_spawn_quirks(mob/living/character, obj/item/new_heirloom)
+	if(QDELETED(character))
+		return FALSE
+	for(var/datum/quirk/quirk as anything in character.roundstart_quirks.Copy())
+		character.remove_quirk(quirk.type)
+	// Административная выдача использует только новую реликвию текущего комплекта, а не ссылку от прежнего тела.
+	character.mind?.set_assigned_heirloom(new_heirloom)
+	SSquirks.AssignQuirks(character, character.client, TRUE, TRUE, null, FALSE, character, spawn_items = TRUE, preferences_source = src)
+	return TRUE
+
+// Полное применение персонажа из админской панели; VV и актуализатор используют copy_to().
+/datum/preferences/proc/apply_to_existing_character(mob/living/carbon/human/character)
+	if(QDELETED(character))
+		return FALSE
+	for(var/datum/quirk/quirk as anything in character.roundstart_quirks.Copy())
+		character.remove_quirk(quirk.type)
+	copy_to(character, icon_updates = FALSE, roundstart_checks = FALSE, initial_spawn = TRUE)
+	apply_spawn_quirks(character)
+	SSlanguage.AssignLanguage(character, character.client)
+	apply_tattoos_to_human(character)
+	post_copy_to(character)
+	character.dna.update_dna_identity()
+	character.regenerate_icons()
+	return TRUE
+
 /datum/preferences/proc/copy_to(mob/living/carbon/human/character, icon_updates = 1, roundstart_checks = TRUE, initial_spawn = FALSE)
 	if(be_random_name)
 		real_name = pref_species.random_name(gender)
@@ -6301,6 +6360,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	character.undie_color = undie_color
 	character.shirt_color = shirt_color
 	character.socks_color = socks_color
+	character.taste_desc = vore_taste
+	character.smell_desc = vore_smell
 
 	var/datum/species/chosen_species
 	if(!roundstart_checks || (pref_species.id in GLOB.roundstart_races))
