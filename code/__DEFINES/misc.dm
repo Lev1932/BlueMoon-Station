@@ -477,6 +477,11 @@ GLOBAL_LIST_INIT(payed_ert, list(
 #define ALT_CLICK "alt"
 #define SHIFT_CLICK "shift"
 
+// Обработчики колеса вызываются от большего приоритета к меньшему.
+#define MOUSEWHEEL_PRIORITY_DEFAULT 0
+#define MOUSEWHEEL_PRIORITY_IMPLANT 10
+#define MOUSEWHEEL_PRIORITY_MECHA 20
+
 //Pixel coordinates within the icon, in the icon's coordinate space
 #define ICON_X "icon-x"
 #define ICON_Y "icon-y"
@@ -506,6 +511,8 @@ GLOBAL_LIST_INIT(payed_ert, list(
 #define DUMMY_HUMAN_SLOT_MANIFEST "dummy_manifest_generation"
 #define DUMMY_HUMAN_SLOT_HALLUCINATION "dummy_hallucination"
 #define DUMMY_HUMAN_SLOT_EXAMINER "dummy_examiner"
+#define DUMMY_HUMAN_SLOT_JOB_MENU "dummy_job_menu"
+#define DUMMY_HUMAN_SLOT_HAIR_PICKER "dummy_hair_picker"
 
 #define PR_ANNOUNCEMENTS_PER_ROUND 5 //The number of unique PR announcements allowed per round
 									//This makes sure that a single person can only spam 3 reopens and 3 closes before being ignored
@@ -574,6 +581,10 @@ GLOBAL_LIST_INIT(payed_ert, list(
 #define UNIT_TEST_SHARD_PARAMETER "unit-test-shard"
 //JSON of past wall times per test, used to balance the shards
 #define UNIT_TEST_DURATIONS_PARAMETER "unit-test-durations"
+//Map config to load instead of data/next_map.json, so several test worlds can share one directory
+#define UNIT_TEST_MAP_PARAMETER "unit-test-map"
+//Name of this test world among others running in the same directory, keeps their caches apart
+#define UNIT_TEST_INSTANCE_PARAMETER "unit-test-instance"
 
 #define EGG_LAYING_MESSAGES list("lays an egg.","squats down and croons.","begins making a huge racket.","begins clucking raucously.")
 
@@ -691,3 +702,8 @@ GLOBAL_LIST_INIT(day_names, list("Monday", "Tuesday", "Wednesday", "Thursday", "
 
 /// Это лист для всевозможных контейнеров реагентов закрытого типа, принимаемого кемдиспенсерами, кеммастерами и т.д.
 #define CLOSED_CONTAINERS_OPERABLE list(/obj/item/reagent_containers/glass/bottle/vial)
+
+/// Хелпер-дефайны для корректной работы стикеров карт
+#define SYNDI_NT_PREFIX_LIST list("Syndicate", "Syndi", "NT", "Nanotrasen") // Блэклист корпоративных неймингов
+#define STICKER_SLOT_PREFIX "prefix"
+#define STICKER_SLOT_SUFFIX "suffix"

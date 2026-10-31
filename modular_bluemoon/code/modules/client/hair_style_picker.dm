@@ -456,7 +456,7 @@ GLOBAL_LIST_EMPTY(hair_style_pickers)
 	var/list/labels = build_labels(user)
 	var/tab_label = labels["tab_[color_tab]"]
 	var/current_color = get_tab_color()
-	var/new_color = input(user, tab_label, labels["color"], "#[current_color]") as color|null
+	var/new_color = tgui_input_color(user, tab_label, labels["color"], "#[current_color]")
 	// За время диалога могли сменить вкладку, отойти от цели или убрать спрей из рук.
 	if(QDELETED(src) || !new_color || tab != color_tab || !can_change_color(user))
 		return FALSE
@@ -677,8 +677,7 @@ GLOBAL_LIST_EMPTY(hair_style_pickers)
 	return base_cache["[dir]"]
 
 /datum/hair_style_picker/proc/build_all_bases()
-	var/slot_key = "hair_style_picker_[owner_ckey]_[rand(1, 999999)]"
-	var/mob/living/carbon/human/dummy/mannequin = generate_or_wait_for_human_dummy(slot_key, regenerate = FALSE)
+	var/mob/living/carbon/human/dummy/mannequin = generate_or_wait_for_human_dummy(DUMMY_HUMAN_SLOT_HAIR_PICKER, regenerate = FALSE)
 	var/list/dirs = list(SOUTH, WEST, NORTH, EAST)
 	base_cache = list()
 	base_offsets = list()
@@ -711,7 +710,7 @@ GLOBAL_LIST_EMPTY(hair_style_pickers)
 			img_h = max(img_h, result.Height())
 	catch(var/exception/base_error)
 		stack_trace("hair_style_picker: не собралась база превью: [base_error]")
-	clear_human_dummy(slot_key)
+	unset_busy_human_dummy(DUMMY_HUMAN_SLOT_HAIR_PICKER)
 	if(length(base_cache) != length(dirs))
 		base_cache.Cut()
 		base_offsets.Cut()
