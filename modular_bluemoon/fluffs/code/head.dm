@@ -578,25 +578,7 @@
 	mob_overlay_icon = 'modular_bluemoon/fluffs/icons/mob/clothing/head.dmi'
 	icon_state = "stupid_cap"
 	item_state = "stupid_cap"
-/* Коммент вещей Лапки. Не возвращать без её разрешения и не переводить в кладбище пепла. Дискорд - lapkee
-/obj/item/modkit/concord_riot_helmet_kit
-	name = "Concord Riot Helmet Kit"
-	desc = "A modkit for making a riot helmet into a Concord Riot Helmet."
-	icon_state = "riot-helmet_kit"
-	product = /obj/item/clothing/head/helmet/riot/concord_riot_helmet
-	fromitem = list(/obj/item/clothing/head/helmet/riot)
 
-/obj/item/clothing/head/helmet/riot/concord_riot_helmet
-	name = "Concord Riot Helmet"
-	desc = "Настоящий тактический комплекс, установленный в скромном корпусе. Не смотря на то, что шлем призван защищать голову, в первую очередь помогает избежать получения урона - встроенные системы этого шлема не только расширяют угол обзора владельца, но и заранее просчитывают траектории летящих предметов, и, в идеале - может сам нивелировать урон, используя внутреннюю систему физического противодействия, уменьшая урон по голове и следующие из него травмы шейных отделов позвонка. Вопреки укоренившемуся мнению, такой шлем почти не используется расой производителем, преимущественно уходя на экспорт."
-	icon = 'modular_bluemoon/fluffs/icons/obj/clothing/head.dmi'
-	mob_overlay_icon = 'modular_bluemoon/fluffs/icons/mob/clothing/head.dmi'
-	anthro_mob_worn_overlay = 'modular_bluemoon/fluffs/icons/mob/clothing/head.dmi'
-	icon_state = "lapkee-helmet"
-	flags_inv = HIDEFACE|HIDESNOUT
-	visor_flags_inv = HIDEFACE|HIDESNOUT
-DONATE_ITEM_TOOLTIP_PARENT(/obj/item/clothing/head/helmet/riot/concord_riot_helmet)
-*/
 /obj/item/clothing/head/donator/bm/custom_helmet
     name = "Custom helmet"
     desc = "An old helmet, well-built by an enthusiast. It looks like the real thing, but feels like a model because of how light it is. The plates have been removed, as has the electronics."

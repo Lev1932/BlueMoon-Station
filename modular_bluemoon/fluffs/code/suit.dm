@@ -1175,60 +1175,7 @@ DONATE_ITEM_TOOLTIP_PARENT(/obj/item/clothing/suit/armor/hos/platecarrier/melato
 	else
 		to_chat(user, span_warning("You can't modify [target] with this kit!"))
 	return TRUE
-/* Коммент вещей Лапки. Не возвращать без её разрешения и не переводить в кладбище пепла. Дискорд - lapkee
-/obj/item/modkit/lapkee_carrier_kit
-	name = "Modified concord armored coat Kit"
-	desc = "A modkit for making a plate carrier into a Modified concord armored coat."
-	icon_state = "plate-carrier_kit"
-	product = /obj/item/clothing/suit/armor/hos/platecarrier/lapkee_carrier
-	fromitem = list(/obj/item/clothing/suit/armor/hos/platecarrier)
 
-/obj/item/modkit/lapkee_carrier_kit/pre_attack(atom/target, mob/living/user, params, attackchain_flags, damage_multiplier) // Модкит ложился внутрь плитки, пробуем починить меняя afterattack на pre_attack
-	if(istype(target, product))
-		to_chat(user, span_warning("[target] is already modified!"))
-		return TRUE
-
-	if(target.type in fromitem)
-		var/loc_to_spawn = target.loc || get_turf(target)
-		var/atom/movable/result = new product
-		user.visible_message(span_warning("[user] modifies [target]!"), span_warning("You modify the [target]!"))
-		qdel(target)
-		qdel(src)
-		if(ismob(loc_to_spawn))
-			var/mob/M = loc_to_spawn
-			M.put_in_hands(result)
-		else
-			result.forceMove(loc_to_spawn)
-	else
-		to_chat(user, span_warning("You can't modify [target] with this kit!"))
-	return TRUE
-
-/obj/item/clothing/suit/armor/hos/platecarrier/lapkee_carrier
-	name = "Modified concord armored coat"
-	desc = "Часть линейки защитного снаряжения для оперативных групп касари, активно работающих в зонах повышенной аномальной активности, радиологических, бактериологических или химических угроз. Применяется там, где невозможно выполнение, например, исследований без физического присутствия представителей вида, или где использование иных средств защиты невозможно. В связи с посредственными отношениями между расой касари и многими другими видами, этот халат оснащён качественными бронепластинами в области груди, системами отслеживания жизненных показателей и, в полной комплектации - системами жизнеобеспечения, бункером, манипулятором и экстренными химическими запасами."
-	icon = 'modular_bluemoon/fluffs/icons/obj/clothing/suit.dmi'
-	mob_overlay_icon = 'modular_bluemoon/fluffs/icons/mob/clothing/suit_digi.dmi'
-	anthro_mob_worn_overlay = 'modular_bluemoon/fluffs/icons/mob/clothing/suit_digi.dmi'
-	icon_state = "lapkee-carrier-top"
-	unique_reskin = list()
-DONATE_ITEM_TOOLTIP_PARENT(/obj/item/clothing/suit/armor/hos/platecarrier/lapkee_carrier)
-
-/obj/item/clothing/suit/armor/hos/platecarrier/lapkee_carrier/equipped(mob/user, slot) //оверрайдим этот прок, дабы у нас вызывалась обнова иконки в момент одевания
-	. = ..()
-	update_icon()
-
-/obj/item/clothing/suit/armor/hos/platecarrier/lapkee_carrier/update_icon_state()
-	. = ..()
-	icon_state = "lapkee-carrier-top"
-	if(!istype(loc, /mob/living/carbon/human))
-		return
-	var/mob/living/carbon/human/wearer = loc
-	var/obj/item/organ/genital/breasts/breast = wearer.getorganslot(ORGAN_SLOT_BREASTS)
-	var/breast_size = clamp(round(breast?.size || 0), 0, 9)
-	icon_state = "lapkee-carrier-coat-[breast_size]"
-	wearer.update_inv_wear_suit()
-	wearer.update_body()
-*/
 /obj/item/clothing/suit/armor/vest/alt/tau
 	name = "Jaeger Combat Exoskeleton MK.1"
 	desc = "Jaeger Combat Exoskeleton MK.1. Designed to accommodate various modular armor components and support systems. This model comes equipped with EOD pauldrons, a Mjolnir torso, and Hell Diver knee guards. The light and storage module appears to be broken, and the armor plates are heavily damaged, offering reduced protection compared to their original state. The armor also features an empty slot for an armor module compatible with all TerraGov armor modules."

@@ -259,40 +259,7 @@
 		/obj/item/modkit/m3predator,
 	)
 	generate_items_inside(items_inside, src)
-/* Коммент вещей Лапки. Не возвращать без её разрешения и не переводить в кладбище пепла. Дискорд - lapkee
-/obj/item/storage/box/lapkee_kit
-	name = "Nebula Box"
-	desc = "Прочный кейс для всякой всячины, включает в себя снаряжение всё снаряжение расы Касари, которое только можно добыть окольными путями - через чёрный рынок и непотребства в высоких кабинетах."
-	icon = 'modular_bluemoon/fluffs/icons/obj/storage.dmi'
-	icon_state = "nebula_box"
-	illustration = null
 
-/obj/item/storage/box/lapkee_kit/PopulateContents()
-	new /obj/item/clothing/under/donator/bm/concord(src) // Форма
-	new /obj/item/clothing/neck/donator/bm/concord_cloak(src) // плащ
-	new /obj/item/modkit/star_dust_kit(src) // противогаз
-	new /obj/item/modkit/lapkee_carrier_kit(src) // плитка
-	new /obj/item/modkit/concord_riot_helmet_kit(src) // шлем
-	new /obj/item/modsuit_modkit/lapkee(src) //модсьют
-	new /obj/item/modkit/white_belt_kit(src) // пояс
-	new /obj/item/modkit/hardlight_gloves_kit(src) // перчатки
-	new /obj/item/modkit/hardlight_gloves_kit(src) // перчатки
-	new /obj/item/modkit/formal_concord_boots_kit(src) // ботинки
-	new /obj/item/modkit/nebular_kit(src) // пистоль - энфорсер
-	new /obj/item/modkit/comet_kit(src) // WT-550 PDW
-	new /obj/item/modkit/nebular_t_kit(src) // тазер
-	new /obj/item/modkit/spectral_kit(src) // температурка
-	new /obj/item/modkit/quasar_kit(src) // АЕГ - advanced energy gun
-	new /obj/item/modkit/neutron_kit(src) // x-ray
-	new /obj/item/modkit/black_hole_kit(src) // super-short shotgun
-	new /obj/item/modkit/black_hole_kit(src) // super-short shotgun
-	new /obj/item/modkit/pulsar_kit(src) // riot дробаш
-	new /obj/item/modkit/supernova_kit(src) // комбат дробаш
-	new /obj/item/modkit/katana_kit(src) // стан-катана
-	new /obj/item/modkit/pulsar_knife_kit(src) // ножик-режик
-	new /obj/item/modkit/lapkee_arm_shield_kit(src) // имплант щита
-//////////////////////////////////////////////////
-*/
 /obj/item/storage/backpack/satchel/sport_abibas_bag
 	name = "Sport 'ABIBAS' satchel"
 	desc = "Спортивная сумка, выглядит удобно."
@@ -300,23 +267,7 @@
 	mob_overlay_icon = 'modular_bluemoon/fluffs/icons/mob/clothing/storage.dmi'
 	icon_state = "abibas_back"
 	item_state = "abibas_back"
-/* Коммент вещей Лапки. Не возвращать без её разрешения и не переводить в кладбище пепла. Дискорд - lapkee
-/obj/item/modkit/white_belt_kit
-	name = "White security belt Kit"
-	desc = "A modkit for making a brig officer webbing into a White security belt."
-	icon_state = "belt_kit"
-	product = /obj/item/storage/belt/security/webbing/ds/lapkee_belt
-	fromitem = list(/obj/item/storage/belt/security/webbing/ds)
 
-/obj/item/storage/belt/security/webbing/ds/lapkee_belt
-	name = "White security belt"
-	icon = 'modular_bluemoon/fluffs/icons/obj/clothing/belts.dmi'
-	mob_overlay_icon = 'modular_bluemoon/fluffs/icons/mob/clothing/belt.dmi'
-	icon_state = "lapkee_belt"
-	item_state = "lapkee_belt"
-	content_overlays = TRUE
-DONATE_ITEM_TOOLTIP_PARENT(/obj/item/storage/belt/security/webbing/ds/lapkee_belt)
-*/
 /obj/item/melee/baton/get_belt_overlay()
 	/*if(istype(loc, /obj/item/storage/belt/security/webbing/ds/lapkee_belt)) Коммент вещей Лапки. Не возвращать без её разрешения и не переводить в кладбище пепла. Дискорд - lapkee
 		return mutable_appearance('modular_bluemoon/fluffs/icons/obj/clothing/belts.dmi', "lapkee_baton")*/

@@ -962,44 +962,7 @@
 	icon_state = "blood_suit"
 	item_state = "blood_suit"
 	can_adjust = FALSE
-/* Коммент вещей Лапки. Не возвращать без её разрешения и не переводить в кладбище пепла. Дискорд - lapkee
-/obj/item/clothing/under/donator/bm/concord
-	name = "Modified Concord Uniform"
-	desc = "Упрощённый вариант формы за авторством ЧВК \"Конкорд\", представляет из себя лёгкую дышащую синт-ткань, в несколько слоёв переплетённую с терморегуляционными трубками и мягкими подкладками. В боевой версии в ней в том числе присутствуют защитные элементы, но эта - лишь лёгкая униформа, что бы попа не потела."
-	mutantrace_variation = STYLE_DIGITIGRADE
-	icon_state = "concord"
-	item_state = "concord"
-	mob_overlay_icon = 'modular_bluemoon/fluffs/icons/mob/clothing/under.dmi'
-	anthro_mob_worn_overlay = 'modular_bluemoon/fluffs/icons/mob/clothing/under_digi.dmi'
-	icon = 'modular_bluemoon/fluffs/icons/obj/clothing/under.dmi'
-	can_adjust = TRUE
-	fitted = NO_FEMALE_UNIFORM
 
-/obj/item/clothing/under/donator/bm/concord/equipped(mob/user, slot) //оверрайдим этот прок, дабы у нас вызывалась обнова иконки в момент одевания
-	. = ..()
-	if(slot != ITEM_SLOT_ICLOTHING)
-		return
-	update_icon()
-
-/obj/item/clothing/under/donator/bm/concord/update_icon_state()
-	. = ..()
-	icon_state = initial(icon_state)
-	if(!istype(loc, /mob/living/carbon/human))
-		return
-	var/mob/living/carbon/human/wearer = loc
-	if(adjusted || !(DIGITIGRADE in wearer.dna.species.species_traits))
-		return
-	var/obj/item/organ/genital/breasts/breast = wearer.getorganslot(ORGAN_SLOT_BREASTS)
-	var/breast_size = clamp(round(breast?.size || 0), 0, 9)
-	icon_state = "[initial(icon_state)]_[breast_size]"
-	wearer.update_inv_w_uniform()
-	wearer.update_body()
-
-/obj/item/clothing/under/donator/bm/concord/toggle_jumpsuit_adjust()
-	. = ..()
-	if(.)
-		update_icon()
-*/
 /obj/item/clothing/under/donator/bm/h_pmc_jeans
 	name = "PMC jeans"
 	desc = "Некогда обычные джинсы адаптированные под нужды оперативника неизвестных наемнических структур."

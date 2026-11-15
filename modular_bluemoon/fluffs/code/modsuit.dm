@@ -419,48 +419,7 @@
 		),
 )
 //////////////////////////////////////////////////////////
-/* Коммент вещей Лапки. Не возвращать без её разрешения и не переводить в кладбище пепла. Дискорд - lapkee
-/obj/item/modsuit_modkit/lapkee
-	name = "Concord MODsuit theme Kit"
-	icon_state = "lapkee_modkit"
-	new_theme = /datum/mod_theme/station_combat/security/concord
 
-/obj/item/mod/control/pre_equipped/concord
-	theme = /datum/mod_theme/station_combat/security/concord
-
-/obj/item/mod/construction/armor/concord
-	theme = /datum/mod_theme/station_combat/security/concord
-
-/datum/mod_theme/station_combat/security/concord
-	name = "Concord"
-	default_skin = "concord"
-	skins = list(
-		"concord" = list(
-			HELMET_LAYER = null,
-			HELMET_FLAGS = list(
-				UNSEALED_CLOTHING = THICKMATERIAL,
-				SEALED_CLOTHING = STOPSPRESSUREDAMAGE|ALLOWINTERNALS,
-				UNSEALED_INVISIBILITY = HIDEFACIALHAIR,
-				SEALED_INVISIBILITY = HIDEMASK|HIDEEYES|HIDEHAIR,
-				UNSEALED_COVER = HEADCOVERSMOUTH,
-				SEALED_COVER = HEADCOVERSEYES,
-			),
-			CHESTPLATE_FLAGS = list(
-				UNSEALED_CLOTHING = THICKMATERIAL,
-				SEALED_CLOTHING = STOPSPRESSUREDAMAGE,
-				SEALED_INVISIBILITY = HIDEJUMPSUIT,
-			),
-			GAUNTLETS_FLAGS = list(
-				UNSEALED_CLOTHING = THICKMATERIAL,
-				SEALED_CLOTHING = STOPSPRESSUREDAMAGE,
-			),
-			BOOTS_FLAGS = list(
-				UNSEALED_CLOTHING = THICKMATERIAL,
-				SEALED_CLOTHING = STOPSPRESSUREDAMAGE,
-			),
-		),
-)
-*/
 /obj/item/modsuit_modkit/melatonin
 	name = "Fairweather MODsuit theme Kit"
 	icon_state = "melatonin_modkit"

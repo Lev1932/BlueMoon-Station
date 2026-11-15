@@ -106,45 +106,7 @@
 	icon_state = "winter_mask"
 	mutantrace_variation = STYLE_DIGITIGRADE|STYLE_NO_ANTHRO_ICON
 	alternate_worn_layer = GLASSES_LAYER
-/* Коммент вещей Лапки. Не возвращать без её разрешения и не переводить в кладбище пепла. Дискорд - lapkee
-/obj/item/clothing/mask/gas/sechailer/star_dust
-	name = "\"Star dust\" rebriser mask"
-	desc = "Сильно модифицированный внутри и лишь незначительно внешне противогаз, превращённый в маску с установленным фильтром и аккумулирующим кислород вместо пользователя мотором. Сверх того, имеет внутри встроенные системы оповещения и некоторой фильтрации изображения. Тактика как она есть."
-	icon = 'modular_bluemoon/fluffs/icons/obj/clothing/mask.dmi'
-	mob_overlay_icon = 'modular_bluemoon/fluffs/icons/mob/clothing/mask.dmi'
-	anthro_mob_worn_overlay = 'modular_bluemoon/fluffs/icons/mob/clothing/mask.dmi'
-	icon_state = "stardust-0"
-	alternate_worn_layer = BACK_LAYER
 
-
-/obj/item/clothing/mask/gas/sechailer/star_dust/equipped(mob/user, slot) //оверрайдим этот прок, дабы у нас вызывалась обнова иконки в момент одевания
-	. = ..()
-	update_icon()
-
-/obj/item/clothing/mask/gas/sechailer/star_dust/update_icon_state()
-	. = ..()
-	icon_state = initial(icon_state)
-	if(!istype(loc, /mob/living/carbon/human))
-		return
-	var/mob/living/carbon/human/wearer = loc
-	var/obj/item/organ/genital/breasts/breast = wearer.getorganslot(ORGAN_SLOT_BREASTS)
-	var/breast_size = clamp(round(breast?.size || 0), 0, 9)
-	icon_state = "stardust-[breast_size][mask_adjusted ? "_up" : ""]"
-	wearer.update_inv_wear_mask()
-	wearer.update_body()
-
-/obj/item/clothing/mask/gas/sechailer/star_dust/adjustmask(mob/living/user)
-	. = ..()
-	if(.)
-		update_icon()
-
-/obj/item/modkit/star_dust_kit
-	name = "\"Star dust\" rebriser mask Kit"
-	desc = "A modkit for making a Security Gas Mask into a \"Star dust\" rebriser mask."
-	icon_state = "gas-mask_kit"
-	product = /obj/item/clothing/mask/gas/sechailer/star_dust
-	fromitem = list(/obj/item/clothing/mask/gas/sechailer)
-*/
 /obj/item/clothing/mask/gas/krieg
 	name = "Противогаз Крига"
 	desc = "Поношенная экипировка гвардейца Корпуса Смерти \"КРИГ\"."
